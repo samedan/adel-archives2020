@@ -10,7 +10,7 @@ import {
   START_DATE,
   RETAIN_STATE,
   CLEAR_SELECTED_EVENT,
-  SET_ACTIVE_LINK,
+  SET_ACTIVE_LINK, SET_INACTIVE_LINK
 } from "./eventConstants";
 import { LISTEN_TO_EVENT_CHAT } from "./eventConstants";
 import { LISTEN_TO_SELECTED_EVENT } from "./eventConstants";
@@ -108,6 +108,11 @@ export default function eventReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         activeItem: payload,
+      };
+    case SET_INACTIVE_LINK:
+      return {
+        ...state,
+        activeItem: '',
       };
 
     default:

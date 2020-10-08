@@ -68,6 +68,7 @@ export default function AdelEventDashboard() {
   const [level1Panels, setLevel1Panels] = useState([]);
   const [level2Panels, setLevel2Panels] = useState([]);
   const [level3Panels, setLevel3Panels] = useState([]);
+  const [level4Panels, setLevel4Panels] = useState([]);
   // const level1Panels = [
   //   { key: "panel-1a", title: "Level 1A", content: "Level 1A Contents" },
   //   { key: "panel-ba", title: "Level 1B", content: "Level 1B Contents" },
@@ -76,6 +77,7 @@ export default function AdelEventDashboard() {
     let dafArray = [];
     let drhArray = [];
     let dsiArray = [];
+    let dmkArray = [];
 
     events.map((e) => {
       switch (e.category) {
@@ -88,6 +90,9 @@ export default function AdelEventDashboard() {
         case "dsi":
           dsiArray.unshift({ content: e.category, title: e.title, key: e.id });
           break;
+        case "dmk":
+          dmkArray.unshift({ content: e.category, title: e.title, key: e.id });
+          break;
         default:
           break;
       }
@@ -97,6 +102,7 @@ export default function AdelEventDashboard() {
     setLevel1Panels(dafArray);
     setLevel2Panels(drhArray);
     setLevel3Panels(dsiArray);
+    setLevel4Panels(dmkArray);
   }
 
   useEffect(() => {
@@ -184,11 +190,32 @@ export default function AdelEventDashboard() {
       </Menu>
     </div>
   );
+  const Level4Content = (
+    <div>
+      <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
+        {level4Panels.map((event) => (
+          <Menu.Item
+            inverted
+            className="title"
+            key={event.key}
+            name={event.key}
+            active={activeItem === event.key}
+            onClick={handleItemClick}
+          >
+            <i aria-hidden="true" class="dropdown icon"></i>
+            {event.title}
+            {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
+          </Menu.Item>
+        ))}
+      </Menu>
+    </div>
+  );
 
   const rootPanels = [
     { key: "panel-1", title: "DAF", content: { content: Level1Content } },
     { key: "panel-2", title: "DRH", content: { content: Level2Content } },
     { key: "panel-3", title: "DSI", content: { content: Level3Content } },
+    { key: "panel-4", title: "DMK", content: { content: Level4Content } },
   ];
 
   return (

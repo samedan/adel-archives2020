@@ -27,7 +27,8 @@ function App() {
   const { initialized } = useSelector((state) => state.async);
 
   // waits to see if it can read a 'user' from firebase
-  if (!initialized) return <LoadingComponent content="Loading app..." />;
+  if (!initialized)
+    return <LoadingComponent content="Chargement des données..." />;
 
   return (
     <>

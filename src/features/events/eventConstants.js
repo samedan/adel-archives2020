@@ -11,3 +11,4 @@ export const SET_FILTER = "SET_FILTER";
 export const START_DATE = "START_DATE";
 export const RETAIN_STATE = "RETAIN_STATE";
 export const SET_ACTIVE_LINK = " SET_ACTIVE_LINK";
+export const SET_INACTIVE_LINK = " SET_INACTIVE_LINK";

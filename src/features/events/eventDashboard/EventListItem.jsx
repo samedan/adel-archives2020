@@ -60,7 +60,7 @@ export default function EventListItem({ event }) {
         <Item.Group>
           <Item className="event-list-item">
             <Grid>
-              <Grid.Column width={5}>
+              {/* <Grid.Column width={5}>
                 <Item.Image
                   style={{ margin: 0 }}
                   size="tiny"
@@ -68,21 +68,21 @@ export default function EventListItem({ event }) {
                   src={event.hostPhotoURL || "/assets/user.png"}
                   title={event.hostedBy}
                 />
-              </Grid.Column>
-              <Grid.Column width={11}>
+              </Grid.Column> */}
+              <Grid.Column width={16}>
                 <Item.Content style={{ margin: 0 }}>
                   <Item.Header
                     content={event.title}
                     className="event-list-item-title"
                   />
-                  <Item.Description>
+                  {/* <Item.Description>
                     Hosted by{" "}
                     <i>
                       <Link to={`/profile/${event.hostUid}`}>
                         {event.hostedBy}
                       </Link>
                     </i>
-                  </Item.Description>
+                  </Item.Description> */}
                   {event.isCancelled && (
                     <Label
                       style={{ top: "-40px" }}
@@ -103,27 +103,29 @@ export default function EventListItem({ event }) {
           <div className="event-list-item-date">
             <Icon name="clock" /> {format(event.date, "MMMM d, yyyy h:mm a")}
           </div>
-          <div className="event-list-item-date">
+          {/* <div className="event-list-item-date">
             <Icon name="marker" /> {event?.venue?.address}
-          </div>
+          </div> */}
         </span>
       </Segment>
-      <Segment secondary>
+      {/* <Segment secondary>
         <List horizontal>
           {event.attendees.map((attendee) => (
             <EventListAttendee key={attendee.id} attendee={attendee} />
           ))}
         </List>
-      </Segment>
+      </Segment> */}
       <Segment clearing>
         <div className="event-list-item-description">{event.description}</div>
-        <Button
-          as={Link}
-          to={`/events/${event.id}`}
-          color="teal"
-          floated="right"
-          content="View"
-        />
+        {authenticated && currentUser && event.hostUid === currentUser.uid && (
+          <Button
+            as={Link}
+            to={`/archives/${event.id}`}
+            color="teal"
+            floated="right"
+            content="View"
+          />
+        )}
         {authenticated && currentUser && event.hostUid === currentUser.uid && (
           <Button
             // onClick={() => deleteEventInFirestore(event.id)}

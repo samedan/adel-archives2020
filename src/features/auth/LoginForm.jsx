@@ -41,6 +41,7 @@ export default function LoginForm() {
             setErrors({ auth: error.message });
             setSubmitting(false);
             // console.log(error);
+            dispatch(closeModal());
           }
         }}
       >

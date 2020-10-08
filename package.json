@@ -56,5 +56,6 @@
   },
   "devDependencies": {
     "redux-devtools-extension": "^2.13.8"
-  }
+  },
+  "homepage": "http://agence-adelanto.fr/images/web/archives/"
 }

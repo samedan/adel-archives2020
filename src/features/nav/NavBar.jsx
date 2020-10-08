@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Menu, Container, Button, Icon } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import SignedOutMenu from "./SignedOutMenu";
 import SignedInMenu from "./SignedInMenu";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setCurrentLink } from "./../events/eventActions";
 
-export default function NavBar({ setFormOpen }) {
+export default function NavBar({ setFormOpen, history }) {
   // Get isAuthenticated from STATE (auth)
-  const { authenticated } = useSelector((state) => state.auth);
+  const { authenticated, activeItem, currentUser } = useSelector(
+    (state) => state.auth
+  );
+
+  const [inactiveItem, setActiveItem] = useState(activeItem);
+
+  const dispatch = useDispatch();
+
+  function handleLoadEvents() {
+    dispatch(setCurrentLink(""));
+  }
 
   return (
     <Menu inverted fixed="top">
@@ -22,7 +33,11 @@ export default function NavBar({ setFormOpen }) {
           {/* re-Vents */}
         </Menu.Item>
 
-        <Menu.Item name="Events" as={NavLink} to="/archives">
+        <Menu.Item
+          name="Events"
+          onClick={handleLoadEvents}
+          // as={NavLink} to="/archives"
+        >
           <Icon
             name="calendar alternate outline"
             size="large"
@@ -30,7 +45,7 @@ export default function NavBar({ setFormOpen }) {
           />
         </Menu.Item>
         {/* <Menu.Item name="Sandbox" as={NavLink} to="/sandbox" /> */}
-        {authenticated ? (
+        {authenticated && currentUser.uid === "jknMKxSZrqRy2oAYTbPBivHAFTJ2" ? (
           <Menu.Item as={NavLink} to="/createevent">
             {/* <Button positive inverted content="Create event" /> */}
             {/* <Icon

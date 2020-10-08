@@ -4,6 +4,7 @@ import Iframe from "react-iframe";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import { useEffect } from "react";
 import { fetchEvents } from "../events/eventActions";
+import { Link, NavLink } from "react-router-dom";
 
 export function TestItemRight({ eventId }) {
   //   console.log(match.params.id);
@@ -36,6 +37,13 @@ export function TestItemRight({ eventId }) {
       <>
         <h3>{el?.title}</h3>
         <p>{el?.description}</p>
+        <p>
+          {
+            <a href={el?.url} target="_blank">
+              Lien
+            </a>
+          }
+        </p>
         <Iframe
           url={el?.url || "https://google.com"}
           width="100%"
