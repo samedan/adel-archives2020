@@ -46,7 +46,7 @@ export default function EventDetailedHeader({ event, isHost, isGoing }) {
       {modalOpen && <UnauthModal setModalOpen={setModalOpen} />}
       <Segment.Group>
         <Segment basic attached="top" style={{ padding: "0" }}>
-          <Image src={`/assets/categoryImages/${event.category}.jpg`} fluid />
+          <Image src={`./assets/categoryImages/${event.category}.jpg`} fluid />
 
           <Segment basic>
             <Item.Group>

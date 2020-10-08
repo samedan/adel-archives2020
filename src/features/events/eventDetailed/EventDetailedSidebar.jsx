@@ -47,7 +47,7 @@ export default function EventDetailedSidebar({ attendees, hostUid }) {
                   mobile={3}
                   // size="tiny"
                   size="mini"
-                  src={attendee.photoURL || "/assets/user.png"}
+                  src={attendee.photoURL || "./assets/user.png"}
                   title={attendee.displayName}
                 />
                 <Item.Content verticalAlign="middle">

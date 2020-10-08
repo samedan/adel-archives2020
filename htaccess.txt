@@ -1,6 +1,6 @@
 RewriteEngine On
 RewriteCond %{SERVER_PORT} 80 
-RewriteRule ^(.*)$ https://archives.adelanto.fr/$1 [R,L]
+RewriteRule ^(.*)$ https://adelanto.fr/archives3/$1 [R,L]
 RewriteBase /
 RewriteRule ^index.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f

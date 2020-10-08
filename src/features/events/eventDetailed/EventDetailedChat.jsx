@@ -75,7 +75,7 @@ export default function EventDetailedChat({ eventId }) {
           <Comment.Group>
             {createDataTree(comments).map((comment) => (
               <Comment key={comment.id}>
-                <Comment.Avatar src={comment.photoURL || "/assets/user.png"} />
+                <Comment.Avatar src={comment.photoURL || "./assets/user.png"} />
                 <Comment.Content>
                   <Comment.Author as={Link} to={`/profile/${comment.uid}`}>
                     {comment.displayName}
@@ -119,7 +119,7 @@ export default function EventDetailedChat({ eventId }) {
                     {comment.childNodes.reverse().map((child) => (
                       <Comment key={child.id}>
                         <Comment.Avatar
-                          src={child.photoURL || "/assets/user.png"}
+                          src={child.photoURL || "./assets/user.png"}
                         />
                         <Comment.Content>
                           <Comment.Author

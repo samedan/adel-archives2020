@@ -8,7 +8,7 @@ export default function EventListAttendee({ attendee }) {
       <Image
         size="mini"
         circular
-        src={attendee.photoURL || "/assets/user.png"}
+        src={attendee.photoURL || "./assets/user.png"}
         title={attendee.displayName || "Joined attendee"}
       />
     </List.Item>

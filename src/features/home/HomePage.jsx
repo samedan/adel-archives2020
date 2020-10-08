@@ -15,7 +15,7 @@ export default function HomePage({ history }) {
         <Header as="h1" inverted>
           <Image
             size="massive"
-            src="./assets/logo.png"
+            src={`${process.env.PUBLIC_URL}/assets/logo.png`}
             style={{ marginBottom: 12 }}
           />
           Adelanto Archives
