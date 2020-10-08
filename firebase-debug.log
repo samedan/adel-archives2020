@@ -1,0 +1,25 @@
+[debug] [2020-09-26T09:53:06.091Z] ----------------------------------------------------------------------
+[debug] [2020-09-26T09:53:06.095Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\samed\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-09-26T09:53:06.095Z] CLI Version:   8.10.0
+[debug] [2020-09-26T09:53:06.095Z] Platform:      win32
+[debug] [2020-09-26T09:53:06.095Z] Node Version:  v12.18.3
+[debug] [2020-09-26T09:53:06.096Z] Time:          Sat Sep 26 2020 11:53:06 GMT+0200 (GMT+02:00)
+[debug] [2020-09-26T09:53:06.096Z] ----------------------------------------------------------------------
+[debug] [2020-09-26T09:53:06.096Z] 
+[debug] [2020-09-26T09:53:06.161Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-09-26T09:53:06.162Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  E:\apps\react\2019_Portfolio\2020_revents\revents_git3\2020_revents
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
