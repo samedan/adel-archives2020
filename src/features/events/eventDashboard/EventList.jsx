@@ -53,84 +53,86 @@ export default function EventList({
   //     });
   // }
 
-  for (let i = 0; i < 3; i++) {
-    events.reverse().map((event) => {
-      // current month
-      var d = new Date();
-      var todaysMonth = d.getMonth();
+  var d = new Date();
+  var todaysMonth = d.getMonth();
 
-      if (event.date.getMonth() === todaysMonth) {
-        return (
-          <div key={event.id}>
-            <p>{todaysMonth}</p>
-            <EventListItem
-              event={event}
-              key={event.id}
-              currentMonth={event.date.getMonth()}
-            />
-          </div>
-        );
-      }
-      return (
-        <div key={event.id}>
-          <p>{todaysMonth}</p>
-          <EventListItem
-            event={event}
-            key={event.id}
-            currentMonth={event.date.getMonth()}
-          />
-        </div>
-      );
-    });
-  }
-  // return (
-  //   <>
-  //     {events.length !== 0 && (
-  //       <InfiniteScroll
-  //         pageStart={0}
-  //         loadMore={getNextEvents}
-  //         hasMore={!loading && moreEvents}
-  //         initialLoad={false}
-  //       >
+  const monthsInYear = [
+    "Janvier",
+    "Fevrier",
+    "Mars",
+    "Avril",
+    "Mai",
+    "Juin",
+    "Juillet",
+    "Aout",
+    "Septembre",
+    "Octobre",
+    "Novembre",
+    "Decembre",
+  ];
 
-  //         {events.reverse().map((event) => {
-  //           // current month
-  //           var d = new Date();
-  //           var todaysMonth = d.getMonth();
+  return (
+    <>
+      {events.length !== 0 && (
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={getNextEvents}
+          hasMore={!loading && moreEvents}
+          initialLoad={false}
+        >
+          <h2>{monthsInYear[todaysMonth]}</h2>
+          {events.reverse().map((event) => {
+            // current month
 
-  //           if (event.date.getMonth() === todaysMonth) {
-  //             return (
-  //               <div key={event.id}>
-  //                 <p>{todaysMonth}</p>
-  //                 <EventListItem
-  //                   event={event}
-  //                   key={event.id}
-  //                   currentMonth={event.date.getMonth()}
-  //                 />
-  //               </div>
-  //             );
-  //           }
-  //         })}
-  //         {events.reverse().map((event) => {
-  //           // current month
-  //           var d = new Date();
-  //           var todaysMonth = d.getMonth() - 1;
+            if (event.date.getMonth() === todaysMonth) {
+              return (
+                <div key={event.id}>
+                  <p>{todaysMonth}</p>
+                  <EventListItem
+                    event={event}
+                    key={event.id}
+                    currentMonth={event.date.getMonth()}
+                  />
+                </div>
+              );
+            }
+          })}
+          <h2>{monthsInYear[todaysMonth - 1]}</h2>
+          {events.reverse().map((event) => {
+            // current month
 
-  //           if (event.date.getMonth() === todaysMonth) {
-  //             return (
-  //               <div key={event.id}>
-  //                 <p>{todaysMonth}</p>
-  //                 <EventListItem
-  //                   event={event}
-  //                   key={event.id}
-  //                   currentMonth={event.date.getMonth()}
-  //                 />
-  //               </div>
-  //             );
-  //           }
-  //         })}
-  //       </InfiniteScroll>
-  //     )}
-  //   </>
-  // );
+            if (event.date.getMonth() === todaysMonth - 1) {
+              return (
+                <div key={event.id}>
+                  <p>{todaysMonth}</p>
+                  <EventListItem
+                    event={event}
+                    key={event.id}
+                    currentMonth={event.date.getMonth()}
+                  />
+                </div>
+              );
+            }
+          })}
+          <h2>{monthsInYear[todaysMonth - 2]}</h2>
+          {events.reverse().map((event) => {
+            // current month
+
+            if (event.date.getMonth() === todaysMonth - 2) {
+              return (
+                <div key={event.id}>
+                  <p>{todaysMonth}</p>
+                  <EventListItem
+                    event={event}
+                    key={event.id}
+                    currentMonth={event.date.getMonth()}
+                  />
+                </div>
+              );
+            }
+          })}
+        </InfiniteScroll>
+      )}
+    </>
+  );
 }
