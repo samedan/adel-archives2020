@@ -14,6 +14,7 @@ import {
 } from "./eventConstants";
 import { LISTEN_TO_EVENT_CHAT } from "./eventConstants";
 import { LISTEN_TO_SELECTED_EVENT } from "./eventConstants";
+import { SET_CURRENT_MONTH } from './eventConstants';
 
 const initialState = {
   // events: sampleData
@@ -26,6 +27,7 @@ const initialState = {
   startDate: new Date(),
   retainState: false,
   activeItem: "",
+  currentMonth: 0
 };
 
 export default function eventReducer(state = initialState, { type, payload }) {
@@ -113,6 +115,11 @@ export default function eventReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         activeItem: '',
+      };
+    case SET_CURRENT_MONTH:
+      return {
+        ...state,
+        currentMonth: payload
       };
 
     default:

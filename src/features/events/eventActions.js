@@ -10,6 +10,7 @@ import {
   START_DATE,
   CLEAR_SELECTED_EVENT,
   SET_ACTIVE_LINK,
+  SET_CURRENT_MONTH
 } from "./eventConstants";
 import {
   asyncActionStart,
@@ -40,6 +41,12 @@ export function setCurrentLink(eventId) {
   return {
     type: SET_ACTIVE_LINK,
     payload: eventId,
+  };
+}
+export function setCurrentMonth(month) {
+  return {
+    type: SET_CURRENT_MONTH,
+    payload: month
   };
 }
 

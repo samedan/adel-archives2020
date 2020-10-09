@@ -69,6 +69,13 @@ export default function AdelEventDashboard() {
   const [level2Panels, setLevel2Panels] = useState([]);
   const [level3Panels, setLevel3Panels] = useState([]);
   const [level4Panels, setLevel4Panels] = useState([]);
+  const [level5Panels, setLevel5Panels] = useState([]);
+  const [level6Panels, setLevel6Panels] = useState([]);
+  const [level7Panels, setLevel7Panels] = useState([]);
+  const [level8Panels, setLevel8Panels] = useState([]);
+  const [level9Panels, setLevel9Panels] = useState([]);
+  const [level10Panels, setLevel10Panels] = useState([]);
+  const [level11Panels, setLevel11Panels] = useState([]);
   // const level1Panels = [
   //   { key: "panel-1a", title: "Level 1A", content: "Level 1A Contents" },
   //   { key: "panel-ba", title: "Level 1B", content: "Level 1B Contents" },
@@ -78,13 +85,20 @@ export default function AdelEventDashboard() {
     let drhArray = [];
     let dsiArray = [];
     let dmkArray = [];
+    let infobtpArray = [];
+    let diinfoArray = [];
+    let industrieinfoArray = [];
+    let itsecurityinfoArray = [];
+    let directeureventsArray = [];
+    let prospectionsArray = [];
+    let barometresArray = [];
 
     events.map((e) => {
       switch (e.category) {
         case "daf":
           dafArray.unshift({ content: e.category, title: e.title, key: e.id });
           break;
-        case "drk":
+        case "drh":
           drhArray.unshift({ content: e.category, title: e.title, key: e.id });
           break;
         case "dsi":
@@ -92,6 +106,55 @@ export default function AdelEventDashboard() {
           break;
         case "dmk":
           dmkArray.unshift({ content: e.category, title: e.title, key: e.id });
+          break;
+        case "infobtp":
+          infobtpArray.unshift({
+            content: e.category,
+            title: e.title,
+            key: e.id,
+          });
+          break;
+        case "diinfo":
+          diinfoArray.unshift({
+            content: e.category,
+            title: e.title,
+            key: e.id,
+          });
+          break;
+        case "industrieinfo":
+          industrieinfoArray.unshift({
+            content: e.category,
+            title: e.title,
+            key: e.id,
+          });
+          break;
+        case "itsecurityinfo":
+          itsecurityinfoArray.unshift({
+            content: e.category,
+            title: e.title,
+            key: e.id,
+          });
+          break;
+        case "directeurevents":
+          directeureventsArray.unshift({
+            content: e.category,
+            title: e.title,
+            key: e.id,
+          });
+          break;
+        case "prospections":
+          prospectionsArray.unshift({
+            content: e.category,
+            title: e.title,
+            key: e.id,
+          });
+          break;
+        case "barometres":
+          barometresArray.unshift({
+            content: e.category,
+            title: e.title,
+            key: e.id,
+          });
           break;
         default:
           break;
@@ -103,6 +166,13 @@ export default function AdelEventDashboard() {
     setLevel2Panels(drhArray);
     setLevel3Panels(dsiArray);
     setLevel4Panels(dmkArray);
+    setLevel5Panels(infobtpArray);
+    setLevel6Panels(diinfoArray);
+    setLevel7Panels(industrieinfoArray);
+    setLevel8Panels(itsecurityinfoArray);
+    setLevel9Panels(directeureventsArray);
+    setLevel10Panels(prospectionsArray);
+    setLevel11Panels(barometresArray);
   }
 
   useEffect(() => {
@@ -129,14 +199,13 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level1Panels.map((event) => (
           <Menu.Item
-            inverted
             className="title"
             key={event.key}
             name={event.key}
             active={activeItem === event.key}
             onClick={handleItemClick}
           >
-            <i aria-hidden="true" class="dropdown icon"></i>
+            <i aria-hidden="true" className="dropdown icon"></i>
             {event.title}
             {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
           </Menu.Item>
@@ -175,14 +244,13 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level3Panels.map((event) => (
           <Menu.Item
-            inverted
             className="title"
             key={event.key}
             name={event.key}
             active={activeItem === event.key}
             onClick={handleItemClick}
           >
-            <i aria-hidden="true" class="dropdown icon"></i>
+            <i aria-hidden="true" className="dropdown icon"></i>
             {event.title}
             {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
           </Menu.Item>
@@ -210,12 +278,182 @@ export default function AdelEventDashboard() {
       </Menu>
     </div>
   );
+  const Level5Content = (
+    <div>
+      <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
+        {level5Panels.map((event) => (
+          <Menu.Item
+            inverted
+            className="title"
+            key={event.key}
+            name={event.key}
+            active={activeItem === event.key}
+            onClick={handleItemClick}
+          >
+            <i aria-hidden="true" class="dropdown icon"></i>
+            {event.title}
+            {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
+          </Menu.Item>
+        ))}
+      </Menu>
+    </div>
+  );
+  const Level6Content = (
+    <div>
+      <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
+        {level6Panels.map((event) => (
+          <Menu.Item
+            inverted
+            className="title"
+            key={event.key}
+            name={event.key}
+            active={activeItem === event.key}
+            onClick={handleItemClick}
+          >
+            <i aria-hidden="true" class="dropdown icon"></i>
+            {event.title}
+            {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
+          </Menu.Item>
+        ))}
+      </Menu>
+    </div>
+  );
+  const Level7Content = (
+    <div>
+      <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
+        {level7Panels.map((event) => (
+          <Menu.Item
+            inverted
+            className="title"
+            key={event.key}
+            name={event.key}
+            active={activeItem === event.key}
+            onClick={handleItemClick}
+          >
+            <i aria-hidden="true" class="dropdown icon"></i>
+            {event.title}
+            {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
+          </Menu.Item>
+        ))}
+      </Menu>
+    </div>
+  );
+  const Level8Content = (
+    <div>
+      <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
+        {level8Panels.map((event) => (
+          <Menu.Item
+            inverted
+            className="title"
+            key={event.key}
+            name={event.key}
+            active={activeItem === event.key}
+            onClick={handleItemClick}
+          >
+            <i aria-hidden="true" class="dropdown icon"></i>
+            {event.title}
+            {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
+          </Menu.Item>
+        ))}
+      </Menu>
+    </div>
+  );
+  const Level9Content = (
+    <div>
+      <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
+        {level9Panels.map((event) => (
+          <Menu.Item
+            inverted
+            className="title"
+            key={event.key}
+            name={event.key}
+            active={activeItem === event.key}
+            onClick={handleItemClick}
+          >
+            <i aria-hidden="true" class="dropdown icon"></i>
+            {event.title}
+            {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
+          </Menu.Item>
+        ))}
+      </Menu>
+    </div>
+  );
+  const Level10Content = (
+    <div>
+      <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
+        {level10Panels.map((event) => (
+          <Menu.Item
+            className="title"
+            key={event.key}
+            name={event.key}
+            active={activeItem === event.key}
+            onClick={handleItemClick}
+          >
+            <i aria-hidden="true" className="dropdown icon"></i>
+            {event.title}
+            {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
+          </Menu.Item>
+        ))}
+      </Menu>
+    </div>
+  );
+  const Level11Content = (
+    <div>
+      <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
+        {level11Panels.map((event) => (
+          <Menu.Item
+            inverted
+            className="title"
+            key={event.key}
+            name={event.key}
+            active={activeItem === event.key}
+            onClick={handleItemClick}
+          >
+            <i aria-hidden="true" class="dropdown icon"></i>
+            {event.title}
+            {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
+          </Menu.Item>
+        ))}
+      </Menu>
+    </div>
+  );
 
   const rootPanels = [
     { key: "panel-1", title: "DAF", content: { content: Level1Content } },
     { key: "panel-2", title: "DRH", content: { content: Level2Content } },
     { key: "panel-3", title: "DSI", content: { content: Level3Content } },
     { key: "panel-4", title: "DMK", content: { content: Level4Content } },
+    { key: "panel-5", title: "info BTP", content: { content: Level5Content } },
+    {
+      key: "panel-6",
+      title: "Directeur Informatique info",
+      content: { content: Level6Content },
+    },
+    {
+      key: "panel-7",
+      title: "Industrie info",
+      content: { content: Level7Content },
+    },
+    {
+      key: "panel-8",
+      title: "IT Security info",
+      content: { content: Level8Content },
+    },
+    {
+      key: "panel-9",
+      title: "Directeur Events",
+      content: { content: Level9Content },
+    },
+    {
+      key: "panel-10",
+      title: "Prospections",
+      content: { content: Level10Content },
+    },
+    {
+      key: "panel-11",
+      title: "Baromètres",
+      content: { content: Level11Content },
+    },
   ];
 
   return (

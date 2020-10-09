@@ -1,9 +1,13 @@
 
 export const categoryData = [
   { key: "daf", text: "DAF", value: "daf" },
-  { key: "drk", text: "DRK", value: "drk" },
+  { key: "drh", text: "DRH", value: "drh" },
   { key: "dsi", text: "DSI News", value: "dsi" },
-  { key: "food", text: "Food", value: "food" },
-  { key: "music", text: "Music", value: "music" },
-  { key: "travel", text: "Travel", value: "travel" },
+  { key: "infobtp", text: "Info BTP", value: "infobtp" },
+  { key: "diinfo", text: "DI info", value: "diinfo" },
+  { key: "industrieinfo", text: "Industrie info", value: "industrieinfo" },
+  { key: "itsecurityinfo", text: "IT Security info", value: "itsecurityinfo" },
+  { key: "directeurevents", text: "Directeur Events", value: "directeurevents" },
+  { key: "prospections", text: "Prospections", value: "prospections" },
+  { key: "barometres", text: "Baromètres", value: "barometres" },
 ];

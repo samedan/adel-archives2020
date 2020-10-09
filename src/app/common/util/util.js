@@ -23,3 +23,13 @@ export function createDataTree(dataset) {
     });
     return datatree;
 }
+
+export function appendMonth(events) {
+
+    let newEvents = events.map(event => (
+        {...event, 'month': event.date.getMonth() }
+    ));
+        
+      
+    return newEvents;
+}

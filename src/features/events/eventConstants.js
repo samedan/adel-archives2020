@@ -12,3 +12,4 @@ export const START_DATE = "START_DATE";
 export const RETAIN_STATE = "RETAIN_STATE";
 export const SET_ACTIVE_LINK = " SET_ACTIVE_LINK";
 export const SET_INACTIVE_LINK = " SET_INACTIVE_LINK";
+export const SET_CURRENT_MONTH = " SET_CURRENT_MONTH";

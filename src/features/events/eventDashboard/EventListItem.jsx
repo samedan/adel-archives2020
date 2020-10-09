@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Segment,
   Item,
@@ -16,14 +16,17 @@ import { format } from "date-fns";
 // import { deleteEventInFirestore } from "../../../app/firestore/firestoreService";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { deleteEvent } from "../eventActions";
+import { deleteEvent, setCurrentMonth } from "../eventActions";
 
 export default function EventListItem({ event }) {
   // console.log(event.hostUid);
   const [loadingCancel, setLoadingCancel] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
+
   const { currentUser, authenticated } = useSelector((state) => state.auth);
-  const { retainState } = useSelector((state) => state.eventsState);
+  const { retainState, currentMonth } = useSelector(
+    (state) => state.eventsState
+  );
   // redirect to '/'
   const history = useHistory();
   // const {
@@ -53,11 +56,15 @@ export default function EventListItem({ event }) {
       toast.error(error.message);
     }
   }
+  useEffect(() => {
+    setCurrentMonth(event.date.getMonth());
+  }, [event]);
 
   return (
     <Segment.Group>
       <Segment>
         <Item.Group>
+          {currentMonth}
           <Item className="event-list-item">
             <Grid>
               {/* <Grid.Column width={5}>

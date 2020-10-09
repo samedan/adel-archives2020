@@ -68,7 +68,8 @@ export default function EventForm({ match, history, location }) {
     //   version: Yup.string().required("You must provide a Version"),
     // }),
     // venue: Yup.object().shape({
-    //   annonceurs: Yup.string().required(
+    //   annonceurs: Yup.string().required(fCategory
+
     //     "You must provide at least one annonceur"
     //   ),
     // }),
