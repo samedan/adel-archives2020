@@ -74,7 +74,7 @@ export default function EventDetailedHeader({ event, isHost, isGoing }) {
         </Segment>
 
         <Segment attached="bottom" clearing>
-          {!isHost && (
+          {/* {!isHost && (
             <>
               {isGoing ? (
                 <Button onClick={handleUserLeaveEvent} loading={loading}>
@@ -94,18 +94,18 @@ export default function EventDetailedHeader({ event, isHost, isGoing }) {
                 </Button>
               )}
             </>
-          )}
+          )} */}
 
-          {isHost && (
+          
             <Button
               as={Link}
               to={`/manage/${event.id}`}
               color="orange"
               floated="right"
             >
-              Manage Event
+              Editer annonce
             </Button>
-          )}
+          
         </Segment>
       </Segment.Group>
     </>

@@ -198,7 +198,7 @@ export default function AdelEventDashboard() {
       {/* <Accordion.Accordion panels={level1Panels} /> */}
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level1Panels.map((event) => (
-          <Menu.Item
+          <Menu.Item 
             className="title"
             key={event.key}
             name={event.key}
@@ -504,7 +504,7 @@ export default function AdelEventDashboard() {
         </>
       ) : (
         <>
-          <Grid.Column width={10}>
+          <Grid.Column width={12}>
             <TestItemRight eventId={activeItem} />
           </Grid.Column>
         </>

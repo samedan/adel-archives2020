@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import EventListItem from "./EventListItem";
 import InfiniteScroll from "react-infinite-scroller";
 import { useSelector } from "react-redux";
@@ -83,7 +83,7 @@ export default function EventList({
         
       }
     }
-    // console.log(shiftedYear);
+    console.log(shiftedYear);
     return(shiftedYear)
   }
 
@@ -92,7 +92,7 @@ export default function EventList({
   const createdYear = []
   for(let i = 0; i<12; i++) {
     createdYear.push(
-      <Fragment key={i}>
+      <>
           <Container width={16} >
             <Grid width={16}>
             <Grid.Row width={16}  className="h2-month">
@@ -104,7 +104,7 @@ export default function EventList({
 
             if (event.date.getMonth() === monthsInYear.indexOf(shiftMonthAtTheStart(todaysMonth)[i])) {
               return (
-                <Grid.Column key={event.id+i} width={16} style={{width:'100%', backgroundcolor:'red'}}>
+                <Grid.Column key={event.id} width={16} style={{width:'100%', backgroundcolor:'red'}}>
                   {/* <p>{todaysMonth}</p> */}
                   
                   <EventListItem
@@ -120,7 +120,7 @@ export default function EventList({
           })}
           </Grid>
           </Container>
-          </Fragment>
+          </>
     )
   }
 
@@ -136,7 +136,36 @@ export default function EventList({
           initialLoad={false}
         >
           {createdYear}
-         
+          <>
+          <Container width={16} >
+            <Grid width={16}>
+            <Grid.Row width={16}  className="h2-month">
+            <h2 className="month"><Icon name='calendar times outline' />{shiftMonthAtTheStart(todaysMonth)[0]}</h2>
+            </Grid.Row>
+          
+          {events.reverse().map((event) => {
+            // current month
+
+            if (event.date.getMonth() === todaysMonth) {
+              return (
+                <Grid.Column key={event.id} width={16} style={{width:'100%', backgroundcolor:'red'}}>
+                  {/* <p>{todaysMonth}</p> */}
+                  
+                  <EventListItem
+                   
+                    event={event}
+                    key={event.id}
+                    currentMonth={event.date.getMonth()}
+                  />
+                  
+                </Grid.Column>
+              );
+            }
+          })}
+          </Grid>
+          </Container>
+          </>
+          
           
         </InfiniteScroll>
       )}

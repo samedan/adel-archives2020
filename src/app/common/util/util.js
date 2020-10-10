@@ -33,3 +33,4 @@ export function appendMonth(events) {
       
     return newEvents;
 }
+

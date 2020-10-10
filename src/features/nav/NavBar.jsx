@@ -45,7 +45,7 @@ export default function NavBar({ setFormOpen, history }) {
           />
         </Menu.Item>
         {/* <Menu.Item name="Sandbox" as={NavLink} to="/sandbox" /> */}
-        {authenticated && currentUser.uid === "jknMKxSZrqRy2oAYTbPBivHAFTJ2" ? (
+        {authenticated && currentUser.uid === "4tVNDDX96HS3T0Hi4Nx0BTjaN7A2" ? (
           <Menu.Item as={NavLink} to="/createevent">
             {/* <Button positive inverted content="Create event" /> */}
             {/* <Icon

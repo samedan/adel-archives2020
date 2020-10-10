@@ -82,16 +82,73 @@ body {
 /* Accordion */
 .ui.styled.accordion .accordion .title,
 .ui.styled.accordion .title {
+  background-color: rgb(35, 40, 46);
   border-bottom: 1px solid #eeeeee !important;
 }
 
+.ui.styled.accordion .active.title {
+  background-image: linear-gradient(
+    135deg,
+    rgb(24, 42, 115) 0%,
+    rgb(33, 138, 174) 68%,
+    rgb(32, 167, 172) 89%
+  );
+}
+
+.ui.vertical.tabular.menu .active.item {
+  background: none #fff;
+  color: rgba(0, 0, 0, 0.95) !important;
+  border-color: #d4d4d5;
+  margin: 0 -1px 0 0;
+  border-radius: 0.28571429rem 0 0 0.28571429rem !important;
+}
+
+.content.active {
+  background-color: #000000;
+}
+
 .ui.vertical.menu {
-  background-color: #eeeeee !important;
+  background-color: #23282e !important;
 }
 a.item.title {
-  color: #333333 !important;
+  color: #ffffff !important;
 }
 
 .ui.styled.accordion .active.title {
-  background-color: cadetblue;
+  background-color: #2e353d;
+}
+
+/*::::::::::::::::::::*/
+.month {
+  float: right;
+  color: #1e6f9d;
+  font-style: italic;
+  width: 100%;
+}
+.h2-month {
+  text-align: left;
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+  margin-left: 20px !important;
+  margin-top: 20px !important;
+}
+
+/* ICON Colors */
+.daf {
+  color: #016fac !important;
+}
+.drh {
+  color: #00843b !important;
+}
+.drk {
+  color: #00843b !important;
+}
+.dsi {
+  color: #00b0ff !important;
+}
+.prospections {
+  color: #ff5c35 !important;
+}
+.category {
+  cursor: pointer;
 }

@@ -10,16 +10,16 @@ import {
   Confirm,
 } from "semantic-ui-react";
 import EventListAttendee from "./EventListAttendee";
-import { Link, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 
 import { format } from "date-fns";
 // import { deleteEventInFirestore } from "../../../app/firestore/firestoreService";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { deleteEvent, setCurrentMonth } from "../eventActions";
+import { deleteEvent, setCurrentLink, setCurrentMonth } from "../eventActions";
 
 export default function EventListItem({ event }) {
-  // console.log(event.hostUid);
+  // console.log(event)
   const [loadingCancel, setLoadingCancel] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
 
@@ -56,40 +56,69 @@ export default function EventListItem({ event }) {
       toast.error(error.message);
     }
   }
+
+  function handleLoadEvents(id) {
+    dispatch(setCurrentLink(id));
+  }
+
   useEffect(() => {
     setCurrentMonth(event.date.getMonth());
   }, [event]);
+
+  const colors = [
+    {name:'drh', color: "users"},
+    {name:'drk', color: "users"},
+    {name:'dsi', color: "file alternate outline"},
+    {name:'daf', color: "chart line"},
+    {name:'prospections', color: "search"},
+    
+  ]
+
+  function returnColor (category) {
+    //   myArray.find(x => x.id === '45').foo;
+      let c = colors.find(x => x.name === category);
+      if(c) {
+        return c.color;
+      } return null;
+      
+  }
+  
+  
+
+
+  
+  
+  
 
   return (
     <Segment.Group>
       <Segment>
         <Item.Group>
-          {currentMonth}
+          
           <Item className="event-list-item">
-            <Grid>
-              {/* <Grid.Column width={5}>
-                <Item.Image
-                  style={{ margin: 0 }}
-                  size="tiny"
-                  circular
-                  src={event.hostPhotoURL || "/assets/user.png"}
-                  title={event.hostedBy}
-                />
-              </Grid.Column> */}
-              <Grid.Column width={16}>
-                <Item.Content style={{ margin: 0 }}>
-                  <Item.Header
-                    content={event.title}
-                    className="event-list-item-title"
-                  />
-                  {/* <Item.Description>
-                    Hosted by{" "}
-                    <i>
-                      <Link to={`/profile/${event.hostUid}`}>
-                        {event.hostedBy}
-                      </Link>
-                    </i>
-                  </Item.Description> */}
+            <Grid style={{width: '100%'}}>
+           
+                      
+                      
+              <Grid.Column width={10}>
+                
+                  <Grid style={{width: '100%'}}>
+                  <Grid.Column width={1}>
+                  <Icon className={`category ${event.category}`} name={returnColor(event.category)}  />
+                  </Grid.Column>
+                  <Grid.Column width={14}>
+                  <h3
+                  className={`category ${event.category}`}
+                  onClick={() =>handleLoadEvents(event.id)}
+                  >{event.title}</h3>
+                  </Grid.Column>
+
+                  </Grid>
+                
+                
+                       
+                 
+                 
                   {event.isCancelled && (
                     <Label
                       style={{ top: "-40px" }}
@@ -98,51 +127,71 @@ export default function EventListItem({ event }) {
                       content="This event has been cancelled"
                     />
                   )}
+                
+              </Grid.Column>
+
+              <Grid.Column width={6} align='right'>
+
+                <Item.Content>
+                <div className="event-list-item-date">
+            <Icon name="clock" /> {format(event.date, "dd/MM/yy")}
+          </div>
                 </Item.Content>
               </Grid.Column>
             </Grid>
           </Item>
         </Item.Group>
       </Segment>
-      <Segment>
-        <span>
-          {/* <Icon name="clock" /> {event.date} */}
-          <div className="event-list-item-date">
-            <Icon name="clock" /> {format(event.date, "MMMM d, yyyy h:mm a")}
-          </div>
-          {/* <div className="event-list-item-date">
-            <Icon name="marker" /> {event?.venue?.address}
-          </div> */}
-        </span>
-      </Segment>
-      {/* <Segment secondary>
-        <List horizontal>
-          {event.attendees.map((attendee) => (
-            <EventListAttendee key={attendee.id} attendee={attendee} />
-          ))}
-        </List>
-      </Segment> */}
+      
       <Segment clearing>
+     
+            <Grid>
+             
+              <Grid.Column width={10}>
         <div className="event-list-item-description">{event.description}</div>
-        {authenticated && currentUser && event.hostUid === currentUser.uid && (
+        </Grid.Column>
+        <Grid.Column width={6}>
+        {authenticated && currentUser && currentUser.uid==="4tVNDDX96HS3T0Hi4Nx0BTjaN7A2" && (
           <Button
+            icon
             as={Link}
             to={`/archives/${event.id}`}
-            color="teal"
+            color="orange"
             floated="right"
-            content="View"
-          />
+            // content="View"
+          >
+            <Icon name="edit" />
+            </Button>
         )}
-        {authenticated && currentUser && event.hostUid === currentUser.uid && (
+        
+        {authenticated && currentUser && currentUser.uid==="4tVNDDX96HS3T0Hi4Nx0BTjaN7A2" && (
           <Button
             // onClick={() => deleteEventInFirestore(event.id)}
             color="red"
             floated="right"
-            content="Delete"
+            icon
             loading={loadingCancel}
             onClick={() => setConfirmOpen(true)}
-          />
+          >
+            <Icon name="delete" />
+            </Button>
         )}
+        {authenticated  && (
+          <Button
+          icon 
+          floated="right"
+            onClick={() =>handleLoadEvents(event.id)}
+            color="teal"
+            // floated="right"
+            
+          >
+             <Icon name="plus circle" />
+            </Button>
+        )}
+
+        </Grid.Column>
+        </Grid>
+        
         <Confirm
           content={
             "selectedEvent?.isCancelled"

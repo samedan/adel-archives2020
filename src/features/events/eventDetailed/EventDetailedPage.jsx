@@ -81,7 +81,7 @@ export default function EventDetailedPage({ match, eventId }) {
           display="initial"
           position="relative"
           // onLoad={this.hideSpinner}
-          loading={true}
+          // loading={true}
         />
       </Grid.Column>
     </Grid>

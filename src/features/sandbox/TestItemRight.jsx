@@ -12,7 +12,7 @@ export function TestItemRight({ eventId }) {
   const { events } = useSelector((state) => state.eventsState);
   const { loading } = useSelector((state) => state.async);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
 
   // useEffect(() => {
   //   if (events === [] || events === null) {
@@ -39,8 +39,8 @@ export function TestItemRight({ eventId }) {
         <p>{el?.description}</p>
         <p>
           {
-            <a href={el?.url} target="_blank">
-              Lien
+            <a href={el?.url} target="_blank" style={{textDecoration:'underline'}}>
+              Ouvrir dans un nouvel onglet
             </a>
           }
         </p>
@@ -54,7 +54,7 @@ export function TestItemRight({ eventId }) {
           display="initial"
           position="relative"
           // onLoad={this.hideSpinner}
-          loading={true}
+          loading={loading}
         />
       </>
     );

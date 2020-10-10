@@ -1,14 +1,18 @@
 import React from "react";
 import { Menu, Image, Dropdown } from "semantic-ui-react";
 import { Link, useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signOutFirebase } from "../../app/firestore/firebaseService";
 import { toast } from "react-toastify";
 import LoadingComponent from "../../app/layout/LoadingComponent";
+import { openModal } from "../../app/common/modals/modalReducer";
 
 export default function SignedInMenu() {
   // const { currentUser } = useSelector((state) => state.auth);
   const { currentUserProfile } = useSelector((state) => state.profile);
+  const { authenticated, currentUser } = useSelector(
+    (state) => state.auth
+  );
   // console.log(currentUserProfile);
 
   const { loading } = useSelector((state) => state.async);
@@ -26,6 +30,7 @@ export default function SignedInMenu() {
     }
   }
 
+  const dispatch = useDispatch();
   if (loading || !currentUserProfile)
     return <LoadingComponent content="Loading profile..." />;
   return (
@@ -56,6 +61,24 @@ export default function SignedInMenu() {
               as={Link}
               to="/account"
             />
+            { 
+            authenticated && currentUser.uid === "4tVNDDX96HS3T0Hi4Nx0BTjaN7A2" ?
+              (
+              <Dropdown.Item
+              text="Register User"
+              icon="signup"
+              onClick={() =>
+                dispatch(
+                  openModal({
+                    modalType: "RegisterForm",
+                  })
+                )
+              }
+            />): null
+
+
+            }
+            
             <Dropdown.Item
               onClick={handleSignOut}
               text="
