@@ -24,7 +24,7 @@ export default function SignedInMenu() {
     try {
       history.push("/");
       await signOutFirebase();
-      toast.info("You have been signed out");
+      toast.info("Session fermée");
     } catch (error) {
       toast.error(error.message);
     }

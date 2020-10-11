@@ -14,16 +14,21 @@ export default function UnauthModal({ history, setModalOpen }) {
     if (!history) {
       setOpen(false);
       setModalOpen(false);
+      console.log('!history')
       history.push("/archives");
       return;
     }
     // coming from browsing, memory always last location
     if (history && prevLocation) {
-      history.push(prevLocation.pathname);
+      console.log('history')
+      // history.push(prevLocation.pathname);
+      history.push("/archives");
     } else {
+      console.log('else')
       // coming from outside, link Bookmarked
       history.push("/archives");
     }
+    console.log('none')
     // history.goBack();
     setOpen(false);
   }

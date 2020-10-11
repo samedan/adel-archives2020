@@ -224,14 +224,14 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level2Panels.map((event) => (
           <Menu.Item
-            inverted
+           
             className="title"
             key={event.key}
             name={event.key}
             active={activeItem === event.key}
             onClick={handleItemClick}
           >
-            <i aria-hidden="true" class="dropdown icon"></i>
+            <i aria-hidden="true" className="dropdown icon"></i>
             {event.title}
             {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
           </Menu.Item>
@@ -303,14 +303,14 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level6Panels.map((event) => (
           <Menu.Item
-            inverted
+          
             className="title"
             key={event.key}
             name={event.key}
             active={activeItem === event.key}
             onClick={handleItemClick}
           >
-            <i aria-hidden="true" class="dropdown icon"></i>
+            <i aria-hidden="true" className="dropdown icon"></i>
             {event.title}
             {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
           </Menu.Item>
@@ -323,14 +323,14 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level7Panels.map((event) => (
           <Menu.Item
-            inverted
+           
             className="title"
             key={event.key}
             name={event.key}
             active={activeItem === event.key}
             onClick={handleItemClick}
           >
-            <i aria-hidden="true" class="dropdown icon"></i>
+            <i aria-hidden="true" className="dropdown icon"></i>
             {event.title}
             {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
           </Menu.Item>
@@ -343,7 +343,7 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level8Panels.map((event) => (
           <Menu.Item
-            inverted
+            
             className="title"
             key={event.key}
             name={event.key}
@@ -363,14 +363,14 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level9Panels.map((event) => (
           <Menu.Item
-            inverted
+           
             className="title"
             key={event.key}
             name={event.key}
             active={activeItem === event.key}
             onClick={handleItemClick}
           >
-            <i aria-hidden="true" class="dropdown icon"></i>
+            <i aria-hidden="true" className="dropdown icon"></i>
             {event.title}
             {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
           </Menu.Item>
@@ -402,7 +402,7 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level11Panels.map((event) => (
           <Menu.Item
-            inverted
+            
             className="title"
             key={event.key}
             name={event.key}
@@ -489,14 +489,14 @@ export default function AdelEventDashboard() {
               loading={loading}
               moreEvents={moreEvents}
             />
-            <Button
+            {/* <Button
               loading={loading}
               disabled={!moreEvents}
               onClick={handleFetchNextEvents}
               color="green"
               content="More..."
               floated="right"
-            />
+            /> */}
           </Grid.Column>
           <Grid.Column width={10}>
             <Loader active={loading} />

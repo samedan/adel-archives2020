@@ -2,9 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Iframe from "react-iframe";
 import LoadingComponent from "../../app/layout/LoadingComponent";
-import { useEffect } from "react";
-import { fetchEvents } from "../events/eventActions";
-import { Link, NavLink } from "react-router-dom";
+
+import { Button, Grid, Icon, Image, Label } from "semantic-ui-react";
 
 export function TestItemRight({ eventId }) {
   //   console.log(match.params.id);
@@ -35,15 +34,47 @@ export function TestItemRight({ eventId }) {
     const el = events.find((event) => event.id === urlId);
     return (
       <>
-        <h3>{el?.title}</h3>
-        <p>{el?.description}</p>
-        <p>
-          {
+      <Grid width={16} style={{marginBottom: '10px'}}>
+        <Grid.Column width={7}>
+       
+        <h2><span className="annonce-title">Edition:</span> {el?.title}</h2>
+        <span className="annonce-title">Annonceurs:</span> {el?.description}
+        </Grid.Column>
+        <Grid.Column width={6}>
+        
+        <div className="ui left labeled button" role="button" tabindex="0">
+          
+        <a className="ui red right pointing basic label" 
+        href={el?.url} target="_blank">Ouvrir dans un nouvel onglet</a>
+        <button class="ui red button">
+          <i aria-hidden="true" 
+        className="linkify icon"></i>
+        </button>
+        </div>
+
+
+        {/* <Button as='div' labelPosition='right'>
+          <Button color='blue'>
+            <Icon name='plus' />
+            uvrir dans un nouvel onglet
+          </Button>
+          <Label as='a' target="_blank" to={el?.url} basic color='red' pointing='left'>
+            2,048
+          </Label>
+        </Button> */}
+          {/* {
             <a href={el?.url} target="_blank" style={{textDecoration:'underline'}}>
               Ouvrir dans un nouvel onglet
             </a>
-          }
-        </p>
+          } */}
+        
+        </Grid.Column>
+        <Grid.Column width={3} align="right">
+          <Image  height="30" src={`./assets/categoryImages/${el?.category}.jpg`}  />          
+        </Grid.Column>
+
+      </Grid>
+        
         <Iframe
           url={el?.url || "https://google.com"}
           width="100%"

@@ -104,7 +104,7 @@ body {
 }
 
 .content.active {
-  background-color: #000000;
+  background-color: #eaeaea;
 }
 
 .ui.vertical.menu {
@@ -129,8 +129,12 @@ a.item.title {
   text-align: left;
   padding-bottom: 0px !important;
   margin-bottom: 0px !important;
-  margin-left: 20px !important;
+  margin-left: 50px !important;
   margin-top: 20px !important;
+}
+
+.annonce-title {
+  color: #4183c4;
 }
 
 /* ICON Colors */
@@ -140,8 +144,8 @@ a.item.title {
 .drh {
   color: #00843b !important;
 }
-.drk {
-  color: #00843b !important;
+.dmk {
+  color: #f57c00 !important;
 }
 .dsi {
   color: #00b0ff !important;
@@ -149,6 +153,53 @@ a.item.title {
 .prospections {
   color: #ff5c35 !important;
 }
+.infobtp {
+  color: #f7a01f !important;
+}
+.diinfo {
+  color: #f39d11 !important;
+}
+.industrieinfo {
+  color: #08316e !important;
+}
+.itsecurityinfo {
+  color: #52cc9d !important;
+}
+.decideursevents {
+  color: #90258d !important;
+}
+.barometres {
+  color: teal !important;
+}
+
 .category {
   cursor: pointer;
+}
+
+/* Calendar Title */
+.calendar-title {
+  box-shadow: 0 0 0 1px #a9d5de inset, 0 0 0 0 transparent;
+
+  color: #276f86;
+  border-color: #a9d5de;
+  border-radius: 0.25rem;
+  position: relative;
+  min-height: 1em;
+  margin: 1em 0;
+  background: #f8ffff;
+  padding: 1em 1.5em;
+  line-height: 1.4285em;
+  color: rgba(0, 0, 0, 0.87);
+  transition: opacity 0.1s ease, color 0.1s ease, background 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.calendar-period {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #00843b;
+}
+.calendar-icon {
+  color: #00843b;
+  padding-top: 5px;
 }

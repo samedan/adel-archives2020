@@ -13,19 +13,24 @@ export default function UnauthModal({ history, setModalOpen }) {
     // when we want to stay on the same page 'JOIN THIS EVENT'
     if (!history) {
       setOpen(false);
-
+      console.log('!history')
       setModalOpen(false);
-      history.push("/archives");
+      // history.push("/archives");
       return;
     }
     // coming from browsing, memory always last location
     if (history && prevLocation) {
-      history.push(prevLocation.pathname);
+      console.log('history')
+      // history.push(prevLocation.pathname);
+      history.push("/archives");
+      // setModalOpen(false);
     } else {
+      console.log('else')
       // coming from outside, link Bookmarked
       history.push("/archives");
     }
     // history.goBack();
+    console.log('none')
     setOpen(false);
   }
 
@@ -45,7 +50,14 @@ export default function UnauthModal({ history, setModalOpen }) {
             fluid
             color="teal"
             content="Se connecter"
-            onClick={() => handleOpenLoginModal("LoginForm")}
+            // onClick={() => handleOpenLoginModal("LoginForm")}
+            onClick={() =>
+              dispatch(
+                openModal({
+                  modalType: "LoginForm",
+                })
+              )
+            }
           />
           {/* <Button.Or />
           <Button
@@ -55,11 +67,11 @@ export default function UnauthModal({ history, setModalOpen }) {
             onClick={() => handleOpenLoginModal("RegisterForm")}
           /> */}
         </Button.Group>
-        <Divider />
+        {/* <Divider />
         <div style={{ textAlign: "center" }}>
           <p>Ou cliquez sur Annuler pour voir Adelanto.fr</p>
           <Button onClick={handleClose} content="Annuler" />
-        </div>
+        </div> */}
       </Modal.Content>
     </Modal>
   );

@@ -65,12 +65,19 @@ export default function EventListItem({ event }) {
     setCurrentMonth(event.date.getMonth());
   }, [event]);
 
+  // categoryOptions = icons
   const colors = [
     {name:'drh', color: "users"},
-    {name:'drk', color: "users"},
+    {name:'dmk', color: "lightbulb outline"},
     {name:'dsi', color: "file alternate outline"},
     {name:'daf', color: "chart line"},
     {name:'prospections', color: "search"},
+    {name:'infobtp', color: "building outline"},
+    {name:'diinfo', color: "rss"},
+    {name:'industrieinfo', color: "cogs"},
+    {name:'itsecurityinfo', color: "cloud upload"},
+    {name:'decideursevents', color: "share square"},
+    {name:'barometres', color: "bullhorn"},
     
   ]
 

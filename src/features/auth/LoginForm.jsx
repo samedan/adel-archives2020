@@ -3,11 +3,12 @@ import ModalWrapper from "../../app/common/modals/ModalWrapper";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import MyTextInput from "../../app/common/form/MyTextInput";
-import { Button, Label, Divider } from "semantic-ui-react";
+import { Button, Label } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../app/common/modals/modalReducer";
 import { signInWithEmail } from "./../../app/firestore/firebaseService";
-import SocialLogin from "./SocialLogin";
+import { toast } from "react-toastify";
+// import SocialLogin from "./SocialLogin";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -34,14 +35,21 @@ export default function LoginForm() {
             // firebaseService
             await signInWithEmail(values);
             setSubmitting(false);
+            toast.success(
+              "Connexion réussie"
+            );
             dispatch(closeModal());
           } catch (error) {
+            // console.log(error);
             // 'setErrors' from Formik transfers the errors to the Form
             // we give the message a 'key'=auth to use it
             setErrors({ auth: error.message });
+            toast.info(
+              "Merci de renseigner une adresse e-mail et un MDP valides"
+            );
             setSubmitting(false);
             // console.log(error);
-            dispatch(closeModal());
+            // dispatch(closeModal());
           }
         }}
       >

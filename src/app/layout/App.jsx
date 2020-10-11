@@ -73,6 +73,8 @@ function App() {
                     key={key}
                   />
                   <Route path="/error" component={ErrorComponent} />
+                  
+                 
                   <AdelPrivateRoute
                     path="/profile/:id"
                     component={ProfilePage}
