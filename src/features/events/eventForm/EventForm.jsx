@@ -117,7 +117,7 @@ export default function EventForm({ match, history, location }) {
               ? await updateEventInFirestore(values)
               : await addEventToFirestore(values);
             setSubmitting(false);
-            history.push("/events");
+            history.push("/archives");
           } catch (error) {
             console.log(error);
             toast.error(error.message);

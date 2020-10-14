@@ -4,19 +4,30 @@ import InfiniteScroll from "react-infinite-scroller";
 import { useSelector } from "react-redux";
 import { setCurrentMonth } from "../eventActions";
 import { appendMonth } from "../../../app/common/util/util";
-import { Button, Container, Grid, Header, Icon, Label, Message, Rail, Ref, Segment, Sticky } from "semantic-ui-react";
+import {
+  Button,
+  Container,
+  Grid,
+  Header,
+  Icon,
+  Label,
+  Message,
+  Rail,
+  Ref,
+  Segment,
+  Sticky,
+} from "semantic-ui-react";
 
 export default function EventList({
   events,
   getNextEvents,
   loading,
-  moreEvents, 
+  moreEvents,
 }) {
   // events.sort((a, b) => b.date < a.date);
 
-  let contextRef = createRef()
+  let contextRef = createRef();
   const { currentMonth } = useSelector((state) => state.eventsState);
-
 
   var d = new Date();
   var todaysMonth = d.getMonth();
@@ -61,9 +72,6 @@ export default function EventList({
   //     });
   // }
 
- 
-
-
   const monthsInYear = [
     "Janvier",
     "Fevrier",
@@ -82,17 +90,19 @@ export default function EventList({
   // creates an Array with the present month at the index 0
   function shiftMonthAtTheStart(todaysMonth, yearChosen = currYear) {
     let shiftedYear = [];
-    for (let i=0; i<12; i++) {
-      if(i<todaysMonth+1) {
-        shiftedYear.unshift({month: monthsInYear[i], year: yearChosen});
+    for (let i = 0; i < 12; i++) {
+      if (i < todaysMonth + 1) {
+        shiftedYear.unshift({ month: monthsInYear[i], year: yearChosen });
       } else {
-        shiftedYear[i]= {month:  monthsInYear[todaysMonth+12-i], year: yearChosen-1};
-        
+        shiftedYear[i] = {
+          month: monthsInYear[todaysMonth + 12 - i],
+          year: yearChosen - 1,
+        };
       }
     }
     // console.log(shiftedYear);
     // console.log(shiftedYear);
-    return(shiftedYear)
+    return shiftedYear;
   }
 
   function handleDecreaseYear() {
@@ -102,7 +112,6 @@ export default function EventList({
     setCurrentYear(currYear + 1);
   }
 
-  
   // console.log(monthsInYear[todaysMonth]);
   // console.log(shiftMonthAtTheStart(todaysMonth)[todaysMonth])
   // const isIndexInShiftedYear = (element) => element = ;
@@ -110,64 +119,55 @@ export default function EventList({
   // console.log(shiftMonthAtTheStart(todaysMonth).findIndex(isIndexInShiftedYear));
   // console.log(monthsInYear[todaysMonth])
 
-  const createdYear = []
-  for(let i = 0; i<12; i++) {
+  const createdYear = [];
+  for (let i = 0; i < 12; i++) {
     createdYear.push(
       <Fragment key={i}>
-        
-          <Container width={16} >
-            <Grid width={16}>
-
+        <Container width={16}>
+          <Grid width={16}>
             {/* Title of the Month */}
-            <Grid.Row width={16}  className="h2-month">
-            <div>
-              
-              <Label  color='red' tag>
-              {shiftMonthAtTheStart(todaysMonth)[i].month} - {shiftMonthAtTheStart(todaysMonth, currYear)[i].year} 
-              </Label>
-              
-            </div>
-            
-            
+            <Grid.Row width={16} className="h2-month">
+              <div>
+                <Label color="red" tag>
+                  {shiftMonthAtTheStart(todaysMonth)[i].month} -{" "}
+                  {shiftMonthAtTheStart(todaysMonth, currYear)[i].year}
+                </Label>
+              </div>
             </Grid.Row>
-          
-          {events.reverse().map((event) => {
-            
-            
-            if (
-              
-              event.date.getMonth() 
-              === 
-              // the right month
-              monthsInYear.indexOf(shiftMonthAtTheStart(todaysMonth)[i].month)
-                &&
-              event.date.getFullYear() === 
-              // the year calculated in the shiftedYear calendar
-              shiftMonthAtTheStart(todaysMonth)[i].year
-              
-              
+
+            {events.reverse().map((event) => {
+              if (
+                event.date.getMonth() ===
+                  // the right month
+                  monthsInYear.indexOf(
+                    shiftMonthAtTheStart(todaysMonth)[i].month
+                  ) &&
+                event.date.getFullYear() ===
+                  // the year calculated in the shiftedYear calendar
+                  shiftMonthAtTheStart(todaysMonth)[i].year
               ) {
-              return (
-              
-                <Grid.Column key={event.id+i} width={16} style={{width:'100%', backgroundcolor:'red'}}>
-                  {/* <p>{todaysMonth}</p> */}
-                  {/* <p>{event.date.getFullYear()}</p>     */}
-                    
-                  <EventListItem
-                   
-                    event={event}
-                    key={event.id}
-                    currentMonth={event.date.getMonth()}
-                  />
-                  
-                </Grid.Column>
-              );
-            }
-          })}
+                return (
+                  <Grid.Column
+                    key={event.id + i}
+                    width={16}
+                    style={{ width: "100%", backgroundcolor: "red" }}
+                  >
+                    {/* <p>{todaysMonth}</p> */}
+                    {/* <p>{event.date.getFullYear()}</p>     */}
+
+                    <EventListItem
+                      event={event}
+                      key={event.id}
+                      currentMonth={event.date.getMonth()}
+                    />
+                  </Grid.Column>
+                );
+              }
+            })}
           </Grid>
-          </Container>
-          </Fragment>
-    )
+        </Container>
+      </Fragment>
+    );
   }
 
   // console.log(createdYear)
@@ -186,47 +186,51 @@ export default function EventList({
           <Ref innerRef={contextRef} width={16}>
           <Rail position='top'>
             <Sticky> */}
-          <Container width={16} className="calendar-title" >
-         
+          <Container width={16} className="calendar-title">
             <Grid width={16}>
-
               <Grid.Column width={1}>
-
-              <Icon
-            name="calendar alternate outline"
-            size="big"
-            // color='green'
-            className="calendar-icon"
-          />
+                <Icon
+                  name="calendar alternate outline"
+                  size="big"
+                  // color='green'
+                  className="calendar-icon"
+                />
               </Grid.Column>
               <Grid.Column width={10}>
-              Choisissez la période de temps en utilisant les boutons à droite: 
-              <br/>
-              <span className="calendar-period">{monthsInYear[todaysMonth]} {currYear} - {monthsInYear[todaysMonth+1]} {currYear-1}</span>
+                Choisissez la période de temps en utilisant les boutons à
+                droite:
+                <br />
+                <span className="calendar-period">
+                  {monthsInYear[todaysMonth]} {currYear} -{" "}
+                  {monthsInYear[todaysMonth + 1]} {currYear - 1}
+                </span>
               </Grid.Column>
-              <Grid.Column align='right' width={5}>
-              <Button.Group >
-          <Button 
-            positive={currYear !== 2014}
-            disabled={currYear === 2014}
-            onClick={handleDecreaseYear}
-            >-12 mois</Button>
-            <Button.Or >-</Button.Or>
-            <Button 
-            positive={currYear !== todaysYear}
-            disabled={currYear === todaysYear}
-            onClick={handleIncreaseYear}
-            >+12 mois</Button>
-          </Button.Group>
-
+              <Grid.Column align="right" width={5}>
+                <Button.Group>
+                  <Button
+                    positive={currYear !== 2014}
+                    disabled={currYear === 2014}
+                    onClick={handleDecreaseYear}
+                  >
+                    -12 mois
+                  </Button>
+                  <Button.Or>-</Button.Or>
+                  <Button
+                    positive={currYear !== todaysYear}
+                    disabled={currYear === todaysYear}
+                    onClick={handleIncreaseYear}
+                  >
+                    +12 mois
+                  </Button>
+                </Button.Group>
               </Grid.Column>
             </Grid>
           </Container>
-            {/* </Sticky>
-            */}
-          
+          {/* </Sticky>
+           */}
+
           {createdYear}
-         
+
           {/* </Rail>
             </Ref>
             </Grid.Column>

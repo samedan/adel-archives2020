@@ -89,14 +89,18 @@ export default function AdelEventDashboard() {
     let diinfoArray = [];
     let industrieinfoArray = [];
     let itsecurityinfoArray = [];
-    let directeureventsArray = [];
+    let decideurseventsArray = [];
     let prospectionsArray = [];
     let barometresArray = [];
 
     events.map((e) => {
       switch (e.category) {
         case "daf":
-          dafArray.unshift({ content: e.category, title: e.title, key: e.id });
+          dafArray.unshift({
+            content: e.category,
+            title: e.title,
+            key: e.id,
+          });
           break;
         case "drh":
           drhArray.unshift({ content: e.category, title: e.title, key: e.id });
@@ -135,8 +139,8 @@ export default function AdelEventDashboard() {
             key: e.id,
           });
           break;
-        case "directeurevents":
-          directeureventsArray.unshift({
+        case "decideursevents":
+          decideurseventsArray.unshift({
             content: e.category,
             title: e.title,
             key: e.id,
@@ -170,7 +174,7 @@ export default function AdelEventDashboard() {
     setLevel6Panels(diinfoArray);
     setLevel7Panels(industrieinfoArray);
     setLevel8Panels(itsecurityinfoArray);
-    setLevel9Panels(directeureventsArray);
+    setLevel9Panels(decideurseventsArray);
     setLevel10Panels(prospectionsArray);
     setLevel11Panels(barometresArray);
   }
@@ -185,20 +189,20 @@ export default function AdelEventDashboard() {
     <div>
       {/* Welcome to level 1 */}
 
-      {/* <div class="accordion ui">
-        <div class="title">
+      {/* <div className="accordion ui">
+        <div className="title">
           DAf 36
         </div>
-        <div class="content">daf</div>
-        <div class="title">
-          <i aria-hidden="true" class="dropdown icon"></i>some title
+        <div className="content">daf</div>
+        <div className="title">
+          <i aria-hidden="true" className="dropdown icon"></i>some title
         </div>
-        <div class="content">daf</div>
+        <div className="content">daf</div>
       </div> */}
       {/* <Accordion.Accordion panels={level1Panels} /> */}
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level1Panels.map((event) => (
-          <Menu.Item 
+          <Menu.Item
             className="title"
             key={event.key}
             name={event.key}
@@ -224,7 +228,6 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level2Panels.map((event) => (
           <Menu.Item
-           
             className="title"
             key={event.key}
             name={event.key}
@@ -263,14 +266,13 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level4Panels.map((event) => (
           <Menu.Item
-            inverted
             className="title"
             key={event.key}
             name={event.key}
             active={activeItem === event.key}
             onClick={handleItemClick}
           >
-            <i aria-hidden="true" class="dropdown icon"></i>
+            <i aria-hidden="true" className="dropdown icon"></i>
             {event.title}
             {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
           </Menu.Item>
@@ -283,14 +285,13 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level5Panels.map((event) => (
           <Menu.Item
-            inverted
             className="title"
             key={event.key}
             name={event.key}
             active={activeItem === event.key}
             onClick={handleItemClick}
           >
-            <i aria-hidden="true" class="dropdown icon"></i>
+            <i aria-hidden="true" className="dropdown icon"></i>
             {event.title}
             {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
           </Menu.Item>
@@ -303,7 +304,6 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level6Panels.map((event) => (
           <Menu.Item
-          
             className="title"
             key={event.key}
             name={event.key}
@@ -323,7 +323,6 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level7Panels.map((event) => (
           <Menu.Item
-           
             className="title"
             key={event.key}
             name={event.key}
@@ -343,14 +342,13 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level8Panels.map((event) => (
           <Menu.Item
-            
             className="title"
             key={event.key}
             name={event.key}
             active={activeItem === event.key}
             onClick={handleItemClick}
           >
-            <i aria-hidden="true" class="dropdown icon"></i>
+            <i aria-hidden="true" className="dropdown icon"></i>
             {event.title}
             {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
           </Menu.Item>
@@ -363,7 +361,6 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level9Panels.map((event) => (
           <Menu.Item
-           
             className="title"
             key={event.key}
             name={event.key}
@@ -402,14 +399,13 @@ export default function AdelEventDashboard() {
       <Menu fluid vertical tabular style={{ backgroundColor: "#eaeaea" }}>
         {level11Panels.map((event) => (
           <Menu.Item
-            
             className="title"
             key={event.key}
             name={event.key}
             active={activeItem === event.key}
             onClick={handleItemClick}
           >
-            <i aria-hidden="true" class="dropdown icon"></i>
+            <i aria-hidden="true" className="dropdown icon"></i>
             {event.title}
             {/* <NavLink to={`/archives/${event.id}`}>{event.id}</NavLink> */}
           </Menu.Item>
@@ -441,7 +437,7 @@ export default function AdelEventDashboard() {
     },
     {
       key: "panel-9",
-      title: "Directeur Events",
+      title: "Decideurs Events",
       content: { content: Level9Content },
     },
     {
@@ -466,7 +462,8 @@ export default function AdelEventDashboard() {
         {/* https://react.semantic-ui.com/modules/accordion/#advanced-nested */}
 
         <Accordion
-          defaultActiveIndex={0}
+          // default opened menu
+          // defaultActiveIndex={}
           panels={rootPanels}
           inverted
           styled

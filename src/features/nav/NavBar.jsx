@@ -29,6 +29,7 @@ export default function NavBar({ setFormOpen, history }) {
             alt="logo"
             style={{ marginRight: "15px" }}
           /> */}
+
           <Icon link name="home" size="large" className="nav-bar-icon" />
           {/* re-Vents */}
         </Menu.Item>
@@ -38,11 +39,14 @@ export default function NavBar({ setFormOpen, history }) {
           onClick={handleLoadEvents}
           // as={NavLink} to="/archives"
         >
-          <Icon
-            name="calendar alternate outline"
-            size="large"
-            className="nav-bar-icon"
-          />
+          <Button positive inverted>
+            {/* <Icon name="plus" /> */}
+            <Icon
+              name="calendar alternate outline"
+              // className="nav-bar-icon"
+            />
+            Tous les evenements
+          </Button>
         </Menu.Item>
         {/* <Menu.Item name="Sandbox" as={NavLink} to="/sandbox" /> */}
         {authenticated && currentUser.uid === "4tVNDDX96HS3T0Hi4Nx0BTjaN7A2" ? (

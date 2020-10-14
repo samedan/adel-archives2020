@@ -28,6 +28,7 @@ export function appendMonth(events) {
 
     let newEvents = events.map(event => (
         {...event, 'month': event.date.getMonth() }
+        // {...event, 'month': event.date }
     ));
         
       
