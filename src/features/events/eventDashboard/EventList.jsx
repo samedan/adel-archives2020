@@ -1,5 +1,6 @@
-import React, { createRef, Fragment, useState } from "react";
+import React, { createRef, Fragment, useState, useEffect } from "react";
 import EventListItem from "./EventListItem";
+import SearchForm from "../eventForm/SearchForm";
 import InfiniteScroll from "react-infinite-scroller";
 import { useSelector } from "react-redux";
 import { setCurrentMonth } from "../eventActions";
@@ -19,21 +20,29 @@ import {
 } from "semantic-ui-react";
 
 export default function EventList({
-  events,
+  // events,
   getNextEvents,
-  loading,
+  // loading,
   moreEvents,
 }) {
   // events.sort((a, b) => b.date < a.date);
 
   let contextRef = createRef();
-  const { currentMonth } = useSelector((state) => state.eventsState);
+  const { currentMonth, events } = useSelector((state) => state.eventsState);
+  const { loading } = useSelector((state) => state.async);
 
   var d = new Date();
   var todaysMonth = d.getMonth();
   var todaysYear = d.getFullYear();
 
   const [currYear, setCurrentYear] = useState(todaysYear);
+  const [searchedArray, setSearchedArray] = useState([]);
+  const [searchedTerm, setSearchedTerm] = useState("");
+
+  useEffect(() => {
+    setSearchedArray(events);
+    // console.log(searchedArray);
+  }, [events]);
 
   function displayCurrentItem(event) {
     return (
@@ -47,30 +56,6 @@ export default function EventList({
       </div>
     );
   }
-
-  // for (let i = 0; i < 12; i++) {
-  //   var d = new Date();
-  //   console.log(i);
-  //   var todaysMonth = d.getMonth() + i;
-  //   appendMonth(events)
-  //     .reverse()
-  //     .map((event) => {
-  //       console.log(event);
-
-  //       if (todaysMonth === event.month) {
-  //         return (
-  //           <div key={event.id}>
-  //             <p>{event.month}</p>
-  //             <EventListItem
-  //               event={event}
-  //               key={event.id}
-  //               currentMonth={event.date.getMonth()}
-  //             />
-  //           </div>
-  //         );
-  //       }
-  //     });
-  // }
 
   const monthsInYear = [
     "Janvier",
@@ -112,12 +97,27 @@ export default function EventList({
     setCurrentYear(currYear + 1);
   }
 
-  // console.log(monthsInYear[todaysMonth]);
-  // console.log(shiftMonthAtTheStart(todaysMonth)[todaysMonth])
-  // const isIndexInShiftedYear = (element) => element = ;
-  // console.log(isIndexInShiftedYear);
-  // console.log(shiftMonthAtTheStart(todaysMonth).findIndex(isIndexInShiftedYear));
-  // console.log(monthsInYear[todaysMonth])
+  // let returnedList = [];
+  // function returnSearchedEvents(searchedTerm) {
+  //   console.log(searchedTerm);
+  //   events.map((event) => {
+  //     // if (searchTerm === null) {
+  //     //   console.log("condifiton vide");
+  //     // }
+  //     if (
+  //       searchedTerm === "" ||
+  //       event.description.toLowerCase().includes(searchedTerm.toLowerCase())
+  //     ) {
+  //       returnedList.push(event);
+  //     }
+  //   });
+  //   setSearchedArray(returnedList);
+  //   // if (searchTerm === "") {
+  //   //   console.log("vide");
+  //   // }
+  //   // console.log(searchTerm);
+  //   console.log(returnedList);
+  // }
 
   const createdYear = [];
   for (let i = 0; i < 12; i++) {
@@ -135,35 +135,41 @@ export default function EventList({
               </div>
             </Grid.Row>
 
-            {events.reverse().map((event) => {
-              if (
-                event.date.getMonth() ===
-                  // the right month
-                  monthsInYear.indexOf(
-                    shiftMonthAtTheStart(todaysMonth)[i].month
-                  ) &&
-                event.date.getFullYear() ===
-                  // the year calculated in the shiftedYear calendar
-                  shiftMonthAtTheStart(todaysMonth)[i].year
-              ) {
-                return (
-                  <Grid.Column
-                    key={event.id + i}
-                    width={16}
-                    style={{ width: "100%", backgroundcolor: "red" }}
-                  >
-                    {/* <p>{todaysMonth}</p> */}
-                    {/* <p>{event.date.getFullYear()}</p>     */}
+            {
+              // events.reverse().map((event) => {
+              // returnSearchedEvents(searchedTerm)
+              //   .reverse()
+              //   .map((event) => {
+              searchedArray.reverse().map((event) => {
+                if (
+                  event.date.getMonth() ===
+                    // the right month
+                    monthsInYear.indexOf(
+                      shiftMonthAtTheStart(todaysMonth)[i].month
+                    ) &&
+                  event.date.getFullYear() ===
+                    // the year calculated in the shiftedYear calendar
+                    shiftMonthAtTheStart(todaysMonth)[i].year
+                ) {
+                  return (
+                    <Grid.Column
+                      key={event.id + i}
+                      width={16}
+                      style={{ width: "100%", backgroundcolor: "red" }}
+                    >
+                      {/* <p>{todaysMonth}</p> */}
+                      {/* <p>{event.date.getFullYear()}</p>     */}
 
-                    <EventListItem
-                      event={event}
-                      key={event.id}
-                      currentMonth={event.date.getMonth()}
-                    />
-                  </Grid.Column>
-                );
-              }
-            })}
+                      <EventListItem
+                        event={event}
+                        key={event.id}
+                        currentMonth={event.date.getMonth()}
+                      />
+                    </Grid.Column>
+                  );
+                }
+              })
+            }
           </Grid>
         </Container>
       </Fragment>
@@ -181,12 +187,17 @@ export default function EventList({
           hasMore={!loading && moreEvents}
           initialLoad={false}
         >
-          {/* <Grid centered columns={16}>
-        <Grid.Column>
-          <Ref innerRef={contextRef} width={16}>
-          <Rail position='top'>
-            <Sticky> */}
           <Container width={16} className="calendar-title">
+            <Grid width={16}>
+              <Grid.Column width={16}>
+                <SearchForm
+                  events={events}
+                  setSearchedTerm={setSearchedTerm}
+                  setSearchedArray={setSearchedArray}
+                />
+              </Grid.Column>
+            </Grid>
+
             <Grid width={16}>
               <Grid.Column width={1}>
                 <Icon
@@ -226,15 +237,8 @@ export default function EventList({
               </Grid.Column>
             </Grid>
           </Container>
-          {/* </Sticky>
-           */}
 
           {createdYear}
-
-          {/* </Rail>
-            </Ref>
-            </Grid.Column>
-            </Grid> */}
         </InfiniteScroll>
       )}
     </>
