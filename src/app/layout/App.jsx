@@ -16,6 +16,7 @@ import LoadingComponent from "./LoadingComponent";
 import ProfilePage from "./../../features/profiles/profilePage/ProfilePage";
 import PrivateRoute from "./PrivateRoute";
 import AdelPrivateRoute from "./AdelPrivateRoute";
+import PasswordReset from "./../../features/auth/PasswordReset";
 import AdelEventDashboard from "./../../features/events/eventDashboard/AdelEventDashboard";
 import EventsFeed from "../../features/events/eventDashboard/EventsFeed";
 import TestMenuLeft from "./../../features/sandbox/TestMenuLeft";
@@ -52,6 +53,7 @@ function App() {
                   {/* <EventsFeed /> */}
                   {/* <AdelPrivateRoute exact path="/events" component={EventDashboard} /> */}
                   {/* <Route exact path="/annonces/:id" component={TestItemRight} /> */}
+                  {/* <PasswordReset path="passwordReset" exact /> */}
                   <AdelPrivateRoute
                     exact
                     path="/archives/:id"
@@ -73,8 +75,7 @@ function App() {
                     key={key}
                   />
                   <Route path="/error" component={ErrorComponent} />
-                  
-                 
+
                   <AdelPrivateRoute
                     path="/profile/:id"
                     component={ProfilePage}

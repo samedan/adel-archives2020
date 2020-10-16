@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Accordion, Button, Grid, Icon, Loader, Menu } from "semantic-ui-react";
+import {
+  Accordion,
+  Header,
+  Grid,
+  Loader,
+  Menu,
+  Button,
+} from "semantic-ui-react";
 import EventList from "./EventList";
 import { useSelector, useDispatch } from "react-redux";
 import EventListItemPlaceholder from "./EventListItemPlaceholder";
-import EventFilters from "./EventFilters";
+
 import { clearEvents, fetchEvents, setCurrentLink } from "./../eventActions";
-import EventsFeed from "./EventsFeed";
-import { RETAIN_STATE } from "../eventConstants";
-import TestMenuLeft from "../../sandbox/TestMenuLeft";
-import EventDetailedPage from "../eventDetailed/EventDetailedPage";
 import { TestItemRight } from "../../sandbox/TestItemRight";
-import { NavLink } from "react-router-dom";
+
+import { Calendar } from "react-calendar";
 
 export default function AdelEventDashboard() {
   // pagination
+
+  const [mapOpen, setMapTopggle] = useState(false);
+
   const limit = 2;
   const dispatch = useDispatch();
 
@@ -464,11 +471,51 @@ export default function AdelEventDashboard() {
         <Accordion
           // default opened menu
           // defaultActiveIndex={}
+          as={Menu}
+          vertical
+          className="stackable 
+           mobile hidden
+          "
+          // mobile
+          // hidden
           panels={rootPanels}
           inverted
           styled
           style={{ backgroundColor: "#222222" }}
         />
+        <Button
+          onClick={() => setMapTopggle(!mapOpen)}
+          color="teal"
+          size="tiny"
+          className="mobile only"
+        >
+          {mapOpen ? "Hide menu" : "Show menu"}
+        </Button>
+
+        {mapOpen && (
+          <Accordion
+            // default opened menu
+            // defaultActiveIndex={}
+            as={Menu}
+            vertical
+            className="stackable 
+          
+          "
+            // mobile
+            // hidden
+            panels={rootPanels}
+            inverted
+            styled
+            style={{ backgroundColor: "#222222" }}
+          />
+        )}
+
+        {/* <Header icon="calendar" attached color="teal" content="Select date" /> */}
+        {/* <Calendar
+          // onChange={(date) => dispatch(setStartDate(date))}
+          value={startDate || new Date()}
+          tileDisabled={() => loading}
+        /> */}
       </Grid.Column>
       {activeItem === "" ? (
         <>

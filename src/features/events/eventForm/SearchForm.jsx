@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "semantic-ui-react";
+import { Button, Segment } from "semantic-ui-react";
 
 export default function SearchForm({
   setSearchedTerm,
@@ -51,30 +51,36 @@ export default function SearchForm({
     // console.log(returnedList);
   }
   return (
-    <form onSubmit={handleSubmit} className="ui form">
-      <div className="ui teal sub header">Cherchez un annonceur</div>
-      {/* <label>
+    <Segment>
+      <form onSubmit={handleSubmit} className="ui form">
+        <div className="ui teal sub header">Cherchez un annonceur</div>
+        {/* <label>
         Annonceur: */}
-      <div className="ui action input">
-        <input
-          type="text"
-          value={name}
-          placeholder="Cherchez..."
-          onChange={(e) => handleChange(e.target.value)}
-          // onChange={(e) => setName(e.target.value)}
-        />
-        {/* </label> */}
-        {/* <input type="submit" value="Submit" /> */}
-        <Button onClick={handleDeleteTerm} className="ui button">
-          x
-        </Button>
-      </div>
-      {name !== "" && (
-        <p>
-          Editions trouvées avec l'annonceur:{" "}
-          <strong style={{ color: "green" }}>{editions}</strong>
-        </p>
-      )}
-    </form>
+        <div className="ui action input">
+          <input
+            type="text"
+            value={name}
+            placeholder="Cherchez..."
+            onChange={(e) => handleChange(e.target.value)}
+            className="mobile-search-input"
+            // onChange={(e) => setName(e.target.value)}
+          />
+          {/* </label> */}
+          {/* <input type="submit" value="Submit" /> */}
+          <Button
+            onClick={handleDeleteTerm}
+            className="ui button search-button"
+          >
+            x
+          </Button>
+        </div>
+        {name !== "" && (
+          <p>
+            Editions trouvées avec l'annonceur:{" "}
+            <strong style={{ color: "green" }}>{editions}</strong>
+          </p>
+        )}
+      </form>
+    </Segment>
   );
 }

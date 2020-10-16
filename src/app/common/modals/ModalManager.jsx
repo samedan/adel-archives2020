@@ -3,10 +3,11 @@ import { useSelector } from "react-redux";
 import TestModal from "../../../features/sandbox/TestModal";
 import LoginForm from "../../../features/auth/LoginForm";
 import RegisterForm from "./../../../features/auth/RegisterForm";
+import ResetPasswordForm from "./../../../features/auth/ResetPasswordForm";
 
 export default function ModalManager() {
   // Which type of model we want open
-  const modalLookup = { TestModal, LoginForm, RegisterForm };
+  const modalLookup = { TestModal, LoginForm, RegisterForm, ResetPasswordForm };
 
   // Current modal
   const currentModal = useSelector((state) => state.modals);

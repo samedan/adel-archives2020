@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ModalWrapper from "../../app/common/modals/ModalWrapper";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -10,23 +10,55 @@ import { signInWithEmail } from "./../../app/firestore/firebaseService";
 import { toast } from "react-toastify";
 // import SocialLogin from "./SocialLogin";
 import { Link } from "react-router-dom";
-import { openModal } from "./../../app/common/modals/modalReducer";
+import { auth } from "./../../app/config/firebase";
 
-export default function LoginForm() {
+export default function ResetPasswordForm() {
   const dispatch = useDispatch();
 
+  // const [email, setEmail] = useState("");
+
+  const [emailHasBeenSent, setEmailHasBeenSent] = useState(false);
+
+  const [error, setError] = useState(null);
+  // const onChangeHandler = (event) => {
+  //   const { name, value } = event.currentTarget;
+
+  //   if (name === "userEmail") {
+  //     setEmail(value);
+  //   }
+  // };
+
+  // const sendResetEmail = (event) => {
+  //   event.preventDefault();
+  //   auth
+  //     .sendPasswordResetEmail(values)
+  //     .then(() => {
+  //       setEmailHasBeenSent(true);
+  //       setTimeout(() => {
+  //         setEmailHasBeenSent(false);
+  //       }, 3000);
+  //     })
+  //     .catch(() => {
+  //       setError("Error resetting password");
+  //     });
+  // };
+
   return (
-    <ModalWrapper size="mini" header="Se connecter">
+    <ModalWrapper
+      size="mini"
+      header="Réinitialisez votre mot de passe"
+      color="blue"
+      icon="archive"
+      className="reset-header"
+    >
       <Formik
         initialValues={{
           email: "",
-          password: "",
         }}
         validationSchema={Yup.object({
           email: Yup.string()
             .required("Merci de renseigner une adresse e-mail valide")
             .email("Merci de renseigner une adresse e-mail valide"),
-          password: Yup.string().required("Merci de renseigner votre MDP"),
         })}
         onSubmit={async (
           values,
@@ -35,17 +67,25 @@ export default function LoginForm() {
         ) => {
           try {
             // firebaseService
-            await signInWithEmail(values);
+            await auth.sendPasswordResetEmail(values.email);
+            setEmailHasBeenSent(true);
+            setTimeout(() => {
+              setEmailHasBeenSent(false);
+            }, 3000);
+            toast.success(
+              "Demande envoyée. Veuillez vérifier votre compte de messagerie dans les prochaines minutes, y compris votre dossier spam."
+            );
             setSubmitting(false);
-            toast.success("Connexion réussie");
+
             dispatch(closeModal());
           } catch (error) {
-            // console.log(error);
+            console.log(error);
             // 'setErrors' from Formik transfers the errors to the Form
             // we give the message a 'key'=auth to use it
             setErrors({ auth: error.message });
+
             toast.info(
-              "Merci de renseigner une adresse e-mail et un MDP valides"
+              "Veuillez fournir l'adresse e-mail avec laquelle vous vous êtes inscrit"
             );
             setSubmitting(false);
             // console.log(error);
@@ -59,14 +99,22 @@ export default function LoginForm() {
               <MyTextInput
                 autoComplete="off"
                 name="email"
+                id="userEmail"
+                // value={email}
+                // onChange={onChangeHandler}
                 placeholder="Adresse e-mail"
               />
-              <MyTextInput
-                name="password"
-                placeholder="MDP"
-                type="password"
-                autoComplete="off"
-              />
+              {/* {emailHasBeenSent && (
+                <div className="py-3 bg-green-400 w-full text-white text-center mb-3">
+                  An email has been sent to you!
+                </div>
+              )}
+              {error !== null && (
+                <div className="py-3 bg-red-600 w-full text-white text-center mb-3">
+                  {error}
+                </div>
+              )} */}
+
               {/* // Formik errors */}
               {errors.auth && (
                 <Label
@@ -75,7 +123,7 @@ export default function LoginForm() {
                   style={{ marginBottom: 10 }}
                   // content={errors.auth}
                   content={
-                    "Le nom d'utilisateur ou le mot de passe est incorrect."
+                    "Veuillez fournir l'adresse e-mail avec laquelle vous vous êtes inscrit"
                   }
                 />
               )}
@@ -86,27 +134,13 @@ export default function LoginForm() {
                 type="submit"
                 fluid
                 size="large"
-                color="teal"
-                content="Je me connecte"
+                color="blue"
+                content="Réinitializer MDP"
+                // onClick={(event) => {
+                //   sendResetEmail(event);
+                // }}
               />
             </Form>
-            <Divider horizontal>Ou</Divider>
-            <Grid centered style={{ margin: "15px" }}>
-              {/* <Button as={Link}>Réinitialisez votre mot de passe</Button> */}
-              <Button
-                fluid
-                color="blue"
-                content="Réinitialisez votre mot de passe"
-                // onClick={() => handleOpenLoginModal("LoginForm")}
-                onClick={() =>
-                  dispatch(
-                    openModal({
-                      modalType: "ResetPasswordForm",
-                    })
-                  )
-                }
-              />
-            </Grid>
           </>
         )}
       </Formik>

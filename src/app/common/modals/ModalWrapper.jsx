@@ -3,13 +3,19 @@ import { useDispatch } from "react-redux";
 import { Modal } from "semantic-ui-react";
 import { closeModal } from "./modalReducer";
 
-export default function ModalWrapper({ children, size, header }) {
+export default function ModalWrapper({ children, size, header, icon }) {
   const dispatch = useDispatch();
 
   return (
     <Modal open={true} onClose={() => dispatch(closeModal())} size={size}>
-      {/* Header for Modal is optional */}
-      {header && <Modal.Header>{header}</Modal.Header>}
+      {header && header === "Réinitialisez votre mot de passe" && (
+        <Modal.Header className="cur">{header}</Modal.Header>
+      )}
+      {header && header !== "Réinitialisez votre mot de passe" && (
+        <Modal.Header className="coi">{header}</Modal.Header>
+      )}
+
+      {/* {icon && <Modal.Header>{icon}</Modal.Header>} */}
 
       {/* Test Modal */}
       {/*   <ModalWrapper size="Mini" header="Test Modal">

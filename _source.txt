@@ -22,3 +22,7 @@ https://www.randomlists.com/random-animals
 
  // Functions 
  firebase deploy --only functions
+
+ // RESET Password
+ https://github.com/GoZaddy/Firebase-auth-article
+ 

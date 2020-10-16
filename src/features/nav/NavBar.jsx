@@ -34,20 +34,23 @@ export default function NavBar({ setFormOpen, history }) {
           {/* re-Vents */}
         </Menu.Item>
 
-        <Menu.Item
-          name="Events"
-          onClick={handleLoadEvents}
-          // as={NavLink} to="/archives"
-        >
-          <Button positive inverted>
-            {/* <Icon name="plus" /> */}
-            <Icon
-              name="calendar alternate outline"
-              // className="nav-bar-icon"
-            />
-            Tous les evenements
-          </Button>
-        </Menu.Item>
+        {authenticated && (
+          <Menu.Item
+            name="Events"
+            onClick={handleLoadEvents}
+            // as={NavLink} to="/archives"
+          >
+            <Button positive inverted>
+              {/* <Icon name="plus" /> */}
+              <Icon
+                name="calendar alternate outline"
+                // className="nav-bar-icon"
+              />
+              <span className="mobile hidden">Tous les evenements</span>
+            </Button>
+          </Menu.Item>
+        )}
+
         {/* <Menu.Item name="Sandbox" as={NavLink} to="/sandbox" /> */}
         {authenticated && currentUser.uid === "4tVNDDX96HS3T0Hi4Nx0BTjaN7A2" ? (
           <Menu.Item as={NavLink} to="/createevent">
