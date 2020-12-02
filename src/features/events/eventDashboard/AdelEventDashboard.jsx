@@ -46,6 +46,7 @@ export default function AdelEventDashboard() {
     lastVisible,
     retainState,
     activeItem,
+    searchedItem,
   } = useSelector(
     (state) => state.eventsState
   );

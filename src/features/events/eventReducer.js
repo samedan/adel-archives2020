@@ -10,11 +10,14 @@ import {
   START_DATE,
   RETAIN_STATE,
   CLEAR_SELECTED_EVENT,
-  SET_ACTIVE_LINK, SET_INACTIVE_LINK
+  SET_ACTIVE_LINK,
+  SET_INACTIVE_LINK,
+  SET_SEARCHED_TERM,
 } from "./eventConstants";
 import { LISTEN_TO_EVENT_CHAT } from "./eventConstants";
 import { LISTEN_TO_SELECTED_EVENT } from "./eventConstants";
-import { SET_CURRENT_MONTH } from './eventConstants';
+import { SET_CURRENT_MONTH } from "./eventConstants";
+import { SET_SEARCHED_ARRAY } from "./eventConstants";
 
 const initialState = {
   // events: sampleData
@@ -27,37 +30,67 @@ const initialState = {
   startDate: new Date(),
   retainState: false,
   activeItem: "",
-  currentMonth: 0
+  currentMonth: 0,
+  searchedItem: "",
+  searchedArrayInRedux: [],
 };
 
-export default function eventReducer(state = initialState, { type, payload }) {
+export default function eventReducer(
+  state = initialState,
+  { type, payload }
+) {
   switch (type) {
     case CREATE_EVENT:
       return {
         ...state,
-        events: [...state.events, payload],
+        events: [
+          ...state.events,
+          payload,
+        ],
       };
+    case SET_SEARCHED_TERM:
+      return {
+        ...state,
+        searchedItem: payload,
+      };
+    case SET_SEARCHED_ARRAY:
+      return {
+        ...state,
+        searchedArrayInRedux: payload,
+      };
+
     case UPDATE_EVENT:
       return {
         ...state,
         // 'filter' returns an [] of all the events NOT updated + the updated one
         events: [
-          ...state.events.filter((evt) => evt.id !== payload.id),
+          ...state.events.filter(
+            (evt) =>
+              evt.id !== payload.id
+          ),
           payload,
         ],
       };
     case DELETE_EVENT:
       return {
         ...state,
-        events: [...state.events.filter((evt) => evt.id !== payload)],
+        events: [
+          ...state.events.filter(
+            (evt) => evt.id !== payload
+          ),
+        ],
         retainState: false,
       };
     case FETCH_EVENTS:
       return {
         ...state,
-        events: [...state.events, ...payload.events],
+        events: [
+          ...state.events,
+          ...payload.events,
+        ],
         moreEvents: payload.moreEvents,
-        lastVisible: payload.lastVisible,
+        lastVisible:
+          payload.lastVisible,
       };
     case LISTEN_TO_EVENT_CHAT:
       return {
@@ -114,12 +147,12 @@ export default function eventReducer(state = initialState, { type, payload }) {
     case SET_INACTIVE_LINK:
       return {
         ...state,
-        activeItem: '',
+        activeItem: "",
       };
     case SET_CURRENT_MONTH:
       return {
         ...state,
-        currentMonth: payload
+        currentMonth: payload,
       };
 
     default:
